@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Calculator</title>
+        <style>
+          #inp1{
+            
+font-size: 40px;
+          }
+            input{
+                width: 80px;
+                height: 60px;
+            }
+            #equal{
+                color: white;
+                width: 170px;
+            }
+        </style>
+        <!-- Required meta tags -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"rel="stylesheet"integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"crossorigin="anonymous"/>
+    </head>
+    <body class="bg-secondary ">
+        <div class="container mt-4 ">
+            <h1 class="text-center text-warning">Calculator</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <table  class="table table-dark table-borderless   mx-auto " style="width: 360px;height: 470px;">
+                        <tr>
+                            <td colspan="4"><input type="text" class="form-control text-center" id="inp1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="btn btn-secondary btn-block " value="CLR" onclick="Clear1()"></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="00" onclick="displayData('00')" ></td>
+                            <td ><input type="button" class="btn btn-secondary btn-block" value="DELETE" id="del" onclick="Delete1()"></td>
+                            <td><input type="button" class="btn btn-secondary btn-block" value="/" onclick="displayData('/')"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="btn btn-secondary btn-block" value="7" onclick="displayData('7')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="8" onclick="displayData('8')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="9" onclick="displayData('9')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="*" onclick="displayData('*')" ></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="4" onclick="displayData('4')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="5" onclick="displayData('5')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="6" onclick="displayData('6')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="-" onclick="displayData('-')" ></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="1" onclick="displayData('1')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="2" onclick="displayData('2')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="3" onclick="displayData('3')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="+" onclick="displayData('+')" ></td>
+                        </tr>
+                        <tr>
+                            
+                            <td><input type="button"class="btn btn-secondary btn-block" value="0" onclick="displayData('0')" ></td>
+                            <td><input type="button"class="btn btn-secondary btn-block" value="." onclick="displayData('.')" ></td>
+                            <td colspan="2"><input type="button"class="btn btn-block bg-info " value="CALCULATE" onclick="Calculation()" id="equal" ></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            function displayData(data){
+                console.log(data);
+                document.querySelector("#inp1").value+=data;
+            }
+            function Calculation(){
+                try{
+                console.log('cal');
+                let num=document.querySelector('#inp1').value;
+                let a=eval(num)
+                console.log(a)
+                document.querySelector("#inp1").value=a;}
+                catch(e){
+                    document.querySelector("#inp1").value='invalid'; 
+                }
+            }
+            function Clear1(){
+                document.querySelector("#inp1").value="";
+                console.log(document.querySelector("#inp1").value="");
+            }
+            function Delete1(){
+                let remove=document.querySelector("#inp1");
+                remove.value=remove.value.slice(0,-1);
+                console.log('del');
+            }
+    
+            document.addEventListener('keydown',function (event){
+                const userkey=event.key;
+                const inputKey= ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '.', 'Enter', 'Backspace', 'Delete'];
+                if(inputKey.includes(userkey)){
+                    event.preventDefault();
+                    if(userkey==="Enter"){
+                        Calculation();
+                    }else if(userkey==="Backspace"){
+                        Delete1();
+                    }else if(userkey==="Delete"){
+                         Clear1();
+                    }else {
+                        displayData(userkey)
+                    } 
+                }
+            });
+        </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
